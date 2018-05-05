@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.alifian.if_vote.Common.Common;
 import com.example.alifian.if_vote.Model.Users;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,11 +51,15 @@ public class LoginActivity extends AppCompatActivity {
 
                             //Get Users Information
                             mDialog.dismiss();
+                            String txtpass = nim.getText().toString();
                             Users users = dataSnapshot.child(nim.getText().toString()).getValue(Users.class);
                             if (users.getPassword().equals(sandi.getText().toString())) {
                                 Toast.makeText(LoginActivity.this, "Log In Success...!", Toast.LENGTH_SHORT).show();
-                                Intent main = new Intent(LoginActivity.this,MainActivity.class);
+                                Intent main = new Intent(LoginActivity.this,Main2Activity.class);
+                                main.putExtra(Intent.EXTRA_TEXT, txtpass);
+//                                Common.currentusers = users;
                                 startActivity(main);
+                                finish();
                             } else {
                                 Toast.makeText(LoginActivity.this, "Log In Failed !!!", Toast.LENGTH_SHORT).show();
                             }

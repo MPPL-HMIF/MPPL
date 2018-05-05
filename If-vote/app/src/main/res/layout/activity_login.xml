@@ -7,78 +7,79 @@
     android:background="@color/dark_grey"
 
     tools:context=".LoginActivity">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
         android:orientation="vertical">
 
 
         <ImageView
             android:id="@+id/iv"
-            android:layout_width="300dp"
-            android:layout_height="200dp"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/vote" />
+            android:src="@drawable/logo" />
 
         <!--<EditText-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Universitas Komputer Indonesia"-->
-            <!--android:textSize="18sp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:textColor="@color/white"-->
-            <!--android:id="@+id/tv" />-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Universitas Komputer Indonesia"-->
+        <!--android:textSize="18sp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:id="@+id/tv" />-->
         <EditText
-            android:layout_width="wrap_content"
-            android:paddingTop="100dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="Nim Anda"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:width="320dp"
             android:id="@+id/nim"
-            />
-        <EditText
             android:layout_width="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="Kata Sandi"
-            android:ems="10"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
             android:width="320dp"
-            android:id="@+id/sandi"/>
+            android:hint="Nim Anda"
+            android:inputType="textPersonName"
+            android:paddingTop="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+        <EditText
+            android:id="@+id/sandi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:width="320dp"
+            android:ems="10"
+            android:hint="Kata Sandi"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
         <Button
             android:id="@+id/btn_login"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:width="320dp"
             android:layout_marginTop="30dp"
-            android:text="Log In"
-            android:textSize="16dp"
-            android:textColor="#f16f7c"
-            android:textAllCaps="false"
+            android:width="320dp"
+            android:background="@drawable/bg_login"
             android:clickable="true"
             android:padding="16dp"
-            style="@style/Base.TextAppearance.AppCompat.Body1"
-            android:background="@drawable/bg_login"/>
+            android:text="Log In"
+            android:textAllCaps="false"
+            android:textColor="#f16f7c"
+            android:textSize="16dp" />
+
         <TextView
             android:id="@+id/forgot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Forgot Password"
-            android:paddingTop="18dp"
-            android:textColor="@color/white"
             android:clickable="true"
-            />
+            android:paddingTop="18dp"
+            android:text="Forgot Password"
+            android:textColor="@color/white" />
     </LinearLayout>
-    </ScrollView>
+
 </RelativeLayout>
