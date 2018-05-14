@@ -51,8 +51,9 @@ public class LoginActivity extends AppCompatActivity {
 
                             //Get Users Information
                             mDialog.dismiss();
-                            String txtpass = nim.getText().toString();
                             Users users = dataSnapshot.child(nim.getText().toString()).getValue(Users.class);
+                            String txtpass = nim.getText().toString();
+//                            String namapass = users.getNama().toString();
                             if (users.getPassword().equals(sandi.getText().toString())) {
                                 Toast.makeText(LoginActivity.this, "Log In Success...!", Toast.LENGTH_SHORT).show();
                                 Intent main = new Intent(LoginActivity.this,Main2Activity.class);

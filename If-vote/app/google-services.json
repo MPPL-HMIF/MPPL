@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "762580125700-7lkfe5iga5koijrm98pl74adjh7li3u6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alifian.if_vote",
+            "certificate_hash": "895abca6d38c33fbda4e2033303f7180fad814bb"
+          }
+        },
+        {
           "client_id": "762580125700-sqnp9jcuj6qflkcbsag9lruomeai82f1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
