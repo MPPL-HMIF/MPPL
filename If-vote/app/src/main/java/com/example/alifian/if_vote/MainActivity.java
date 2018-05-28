@@ -2,7 +2,6 @@ package com.example.alifian.if_vote;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,22 +14,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 
-import com.example.alifian.if_vote.Interface.ItemClickListener;
-import com.example.alifian.if_vote.Model.Kandidat;
-import com.example.alifian.if_vote.ViewHolder.MenuViewHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.example.alifian.if_vote.Common.Common;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
-public class Main2Activity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     DatabaseReference mDatabase;
     FirebaseDatabase database;
     DatabaseReference kandidat;
-    TextView txtnim;
+    TextView txtnim,txtnama;
     EditText nim;
 
     RecyclerView recycler_view;
@@ -39,25 +35,10 @@ public class Main2Activity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("HMIF - UNIKOM");
         setSupportActionBar(toolbar);
-
-        //init firebase
-        database = FirebaseDatabase.getInstance();
-        kandidat = database.getReference("kandidat");
-
-
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -71,49 +52,16 @@ public class Main2Activity extends AppCompatActivity
         Intent passing = getIntent();
         String txtpas = passing.getStringExtra(Intent.EXTRA_TEXT);
 
-        //user
+        //set name for user
         View viewHeader = navigationView.getHeaderView(0);
+        txtnama = (TextView)viewHeader.findViewById(R.id.txtnama);
+        txtnama.setText(Common.currentusers.getNama());
         txtnim = (TextView)viewHeader.findViewById(R.id.txtnim);
         txtnim.setText(txtpas);
 
-        //load data
-        recycler_view = (RecyclerView)findViewById(R.id.recycler_view);
-        recycler_view.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recycler_view.setLayoutManager(layoutManager);
-
-        loadData();
+        //launch fragment
+        showFragment(R.id.nav_kandidat);
     }
-
-
-    private void loadData(){
-        FirebaseRecyclerAdapter<Kandidat,MenuViewHolder> adapter = new FirebaseRecyclerAdapter<Kandidat, MenuViewHolder>(Kandidat.class,R.layout.menu_item,MenuViewHolder.class,kandidat) {
-            @Override
-            protected void populateViewHolder(MenuViewHolder viewHolder, final Kandidat model, int position) {
-                viewHolder.txtnopas.setText(model.getNopas());
-                Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.imageView);
-                final Kandidat clickItem = model;
-                viewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(Main2Activity.this,"Pasangan No: "+clickItem.getNopas(),Toast.LENGTH_SHORT).show();
-                        mDatabase = FirebaseDatabase.getInstance().getReference("vote");
-
-                        String ids = mDatabase.push().getKey();
-                        Artist artist = new Artist(clickItem.getNopas());
-
-                        Intent passing = getIntent();
-                        String txtpas = passing.getStringExtra(Intent.EXTRA_TEXT);
-
-                        mDatabase.child(txtpas).setValue(artist);
-                        Toast.makeText(Main2Activity.this,""+txtpas,Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        };
-        recycler_view.setAdapter(adapter);
-    }
-
 
     @Override
     public void onBackPressed() {
@@ -130,6 +78,29 @@ public class Main2Activity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main2, menu);
         return true;
+    }
+
+    private void showFragment(int id){
+        Fragment fragment = null;
+
+        switch (id){
+            case R.id.nav_kandidat:
+                fragment = new VoteFragment();
+                break;
+            case R.id.nav_video:
+                fragment = new VideoFragment();
+                break;
+            case R.id.nav_logout:
+                break;
+        }
+
+        if(fragment != null){
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.main_frame, fragment);
+            fragmentTransaction.commit();
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
     }
 
     @Override
@@ -153,20 +124,8 @@ public class Main2Activity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_kandidat) {
-            Intent intent = new Intent(Main2Activity.this, Vote.class);
-            startActivity(intent);
+        showFragment(id);
 
-        } else if (id == R.id.nav_video) {
-
-        } else if (id == R.id.nav_setting) {
-
-        } else if (id == R.id.nav_logout) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }

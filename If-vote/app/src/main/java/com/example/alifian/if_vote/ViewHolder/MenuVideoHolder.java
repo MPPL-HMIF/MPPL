@@ -1,27 +1,35 @@
 package com.example.alifian.if_vote.ViewHolder;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.example.alifian.if_vote.Interface.ItemClickListener;
 import com.example.alifian.if_vote.R;
 
-public class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class MenuVideoHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-    public TextView txtKetua;
-    public TextView txtWakil;
-    public TextView txtnopas;
-    public ImageView imageView;
-    TextView txt_nopas;
+
+    public TextView txturl;
+    public VideoView videoView;
+    public String url;
+    public ImageView image;
     private ItemClickListener itemClickListener;
 
-    public MenuViewHolder(View itemView) {
+    public MenuVideoHolder(View itemView) {
         super(itemView);
-        txtnopas = (TextView)itemView.findViewById(R.id.txt_nopas);
-        imageView = (ImageView) itemView.findViewById(R.id.menu_image);
+        image = (ImageView) itemView.findViewById(R.id.thumbnail);
 
+//        txturl = (TextView)itemView.findViewById(R.id.url_video);
+//        url = txturl.toString();
+//        videoView = (VideoView) itemView.findViewById(R.id.menu_video);
+//        Uri uri = Uri.parse(url);
+//
+//        videoView.setVideoURI(uri);
+//        videoView.requestFocus();
         itemView.setOnClickListener(this);
     }
 

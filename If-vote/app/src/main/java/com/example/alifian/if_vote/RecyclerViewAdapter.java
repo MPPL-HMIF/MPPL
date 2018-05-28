@@ -1,7 +1,6 @@
 package com.example.alifian.if_vote;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +23,7 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v;
-        v = LayoutInflater.from(mContext).inflate(R.layout.menu_item,parent,false);
+        v = LayoutInflater.from(mContext).inflate(R.layout.list_item,parent,false);
         MyViewHolder viewHolder = new MyViewHolder(v);
         return viewHolder;
     }

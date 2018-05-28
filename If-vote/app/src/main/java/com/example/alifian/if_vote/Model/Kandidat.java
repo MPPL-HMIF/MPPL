@@ -9,15 +9,17 @@ public class Kandidat {
     private String wakil;
     private String image;
     public String nopas;
+    private String video;
 
     public Kandidat() {
     }
 
-    public Kandidat(String ketua, String wakil, String image, String nopas) {
+    public Kandidat(String ketua, String wakil, String image, String nopas, String video) {
         this.ketua = ketua;
         this.wakil = wakil;
         this.image = image;
         this.nopas = nopas;
+        this.video = video;
     }
 
     public String getKetua() {
@@ -56,5 +58,13 @@ public class Kandidat {
 
     public void setNopas(String nopas) {
         this.nopas = nopas;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
     }
 }

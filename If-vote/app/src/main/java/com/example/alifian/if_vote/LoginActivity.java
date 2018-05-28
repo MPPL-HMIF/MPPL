@@ -56,9 +56,9 @@ public class LoginActivity extends AppCompatActivity {
 //                            String namapass = users.getNama().toString();
                             if (users.getPassword().equals(sandi.getText().toString())) {
                                 Toast.makeText(LoginActivity.this, "Log In Success...!", Toast.LENGTH_SHORT).show();
-                                Intent main = new Intent(LoginActivity.this,Main2Activity.class);
+                                Intent main = new Intent(LoginActivity.this,MainActivity.class);
                                 main.putExtra(Intent.EXTRA_TEXT, txtpass);
-//                                Common.currentusers = users;
+                                Common.currentusers = users;
                                 startActivity(main);
                                 finish();
                             } else {
